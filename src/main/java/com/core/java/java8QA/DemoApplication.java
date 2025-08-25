@@ -20,7 +20,8 @@ public class DemoApplication {
                 .collect(Collectors.toList());
         System.out.println(emp);
         // Group the employee by Department name
-        Map<String, List<Employee>> deptWithEmployee = employees.stream().collect(Collectors.groupingBy(e -> e.getDepartNames()));
+        Map<String, List<Employee>> deptWithEmployee = employees.stream().
+                collect(Collectors.groupingBy(e -> e.getDepartNames()));
         System.out.println(deptWithEmployee);
         // Total number of employee
         long count = employees.stream().collect(Collectors.counting());
