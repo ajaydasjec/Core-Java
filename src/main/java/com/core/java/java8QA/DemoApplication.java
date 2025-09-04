@@ -45,8 +45,16 @@ public class DemoApplication {
         Map<String, Double> agerageAgeOfMaleAndFemale = employees.stream().collect(Collectors.groupingBy(Employee::getGender,Collectors.averagingInt(Employee::getAge)));
         System.out.println(agerageAgeOfMaleAndFemale);
 
-        Map.Entry<String,Long> detMaxCount = employees.stream().collect(Collectors.groupingBy(Employee::getDepartNames,Collectors.counting())).entrySet().stream().max(Map.Entry.comparingByValue()).get();
-        System.out.println(detMaxCount);
+        /*Map.Entry<String,Long> deptMaxCount =*/ employees.stream().collect(Collectors.groupingBy(Employee::getDepartNames,Collectors.counting()))
+                .entrySet()
+                .stream()
+                .max(Map.Entry.comparingByValue())
+                .ifPresent((entry)->{
+                    System.out.println("Department name that is having Maximum: "+entry.getKey());
+                    System.out.println("Maximum occurrence "+ entry.getValue());
+                });
+                //.get();
+        //System.out.println("Department in maximum: "+deptMaxCount);
 
         List<Employee> empStayingInChennaiAndSortedByNamr = employees.stream()
                 .filter(e -> e.getAddress().equals("Chennai")).sorted(Comparator.comparing(Employee::getName)).collect(Collectors.toList());
