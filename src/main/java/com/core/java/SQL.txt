@@ -1,0 +1,30 @@
+Second Max salary of an employee
+select Max(salary) from employee where salary < select Max(salary) from employee
+
+Truncate => delete all records but rollback is not possible
+delete from table => delete all records but roll back is possible
+drop => delete the entire database object
+
+Inner Join => returns only rows where there is a match in both tables
+Left Join (Left outer Join) => returns rows from the left table and the matching rows from
+                            the right table, null values are return from the right table columns
+Right Join (Right outer Join) => Returns all rows from the right table and the matching rows from the
+                                left table
+Full Join => Returns all rows when there is a match in either left or right table
+
+Difference between where and Having => where is filtering rows before applying any grouping
+or aggregation. On the other hand we use Having to filter groups after performing grouping and
+aggregation
+
+How do you find duplicate in a table => Use group by or count in having command
+
+Delete same row
+WITH CTE AS(
+   SELECT [col1], [col2], [col3], [col4], [col5], [col6], [col7],
+       RN = ROW_NUMBER()OVER(PARTITION BY col1 ORDER BY col1)
+   FROM dbo.Table1
+)
+DELETE FROM CTE WHERE RN > 1
+
+What is difference between UNION and UNION ALL => Union is removing duplicate while UNION all keeps
+all the duplicates
